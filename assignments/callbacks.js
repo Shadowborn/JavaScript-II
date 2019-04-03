@@ -93,4 +93,19 @@ function removeDuplicates(array, cb) {
   // removeDuplicates removes all duplicate values from the given array.
   // Pass the duplicate free array to the callback function.
   // Do not mutate the original array.
+  return cb(new Set(array));
 }
+console.log(removeDuplicates(["a", "a", "a", "a"], x => x));
+
+function removeDuplicates(array, cb) {
+  let nonDuplicates = array.reduce((acc, cur, i, arr) =>{
+    //if the current value isnt in my acc, then add it. 
+    //But if the current value is in my acc, (a duplicate) then ignore it.
+    if (!(acc.includes(cur))){
+      return acc.concat(cur);
+    }
+    return acc;
+  },[])
+  return cb(nonDuplicates);
+}
+console.log(removeDuplicates(["NotBlah","NotBlah","blah","blah","blah"], x => x))
